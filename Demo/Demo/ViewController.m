@@ -28,7 +28,24 @@
 }
 
 - (IBAction)btnTouchIn:(id)sender {
-    KyoTagView *tagView = [[KyoTagView alloc] initWithTitle:@"代码创建" withFrame:CGRectMake(200, 200, 56, 28)];
-    [self.view addSubview:tagView];
+    KyoTagView *tagView1 = [[KyoTagView alloc] initWithTitle:@"代码创建" withFrame:CGRectMake(200, 200, 56, 28)];
+    [self.view addSubview:tagView1];
+    
+    KyoTagView *tagView2 = [[KyoTagView alloc] initWithTitle:@"代码创建1" withPoint:CGPointMake(200, 250) withMargin:CGSizeMake(16, 30)];
+    [self.view addSubview:tagView2];
+    
+    KyoTagView *tagView3 = [[KyoTagView alloc] initWithTitle:@"代码创建2" withPoint:CGPointMake(200, 300) withMargin:CGSizeMake(16, 30) withIcon:[UIImage imageNamed:@"com_icon_location"]];
+    [self.view addSubview:tagView3];
+    
+    KyoTagView *tagView4 = [[KyoTagView alloc] initWithTitle:@"代码创建3" withPoint:CGPointMake(200, 350) withMargin:CGSizeMake(16, 30) withIcon:[UIImage imageNamed:@"com_icon_location"]];
+    tagView4.iconYInset = -6;
+    tagView4.space = 0;
+    [self.view addSubview:tagView4];
+    
+    KyoTagView *tagView5 = [[KyoTagView alloc] initWithTitle:@"代码创建4" withPoint:CGPointMake(200, 400) withMargin:CGSizeMake(16, 30) withIcon:[UIImage imageNamed:@"com_icon_location"]];
+    tagView5.iconYInset = -6;
+    tagView5.space = 0;
+    tagView5.direction = KyoTagViewIconDirectionRight;
+    [self.view addSubview:tagView5];
 }
 @end
