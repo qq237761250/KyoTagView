@@ -39,6 +39,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8G6-Gj-Pyt" customClass="KyoTagView">
@@ -62,6 +63,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="iconYInset">
                                         <real key="value" value="-4"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-Ne-4gH" customClass="KyoTagView">
@@ -114,6 +116,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="iconYInset">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

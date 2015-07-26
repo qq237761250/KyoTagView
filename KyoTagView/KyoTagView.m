@@ -65,19 +65,21 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    if (self.imageBorder) {
-        self.imageBorder = [self.imageBorder resizableImageWithCapInsets:UIEdgeInsetsMake(self.imageBorder.size.height/2 - 1, self.imageBorder.size.width/2 - 1, self.imageBorder.size.height/2 - 1, self.imageBorder.size.width/2 - 1)];
-        [self.imageBorder drawInRect:rect];
-    } else if (self.color) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetLineWidth(context, 1.0);
-        CGContextSetStrokeColorWithColor(context, self.color.CGColor);
-        CGPathRef pathBorder = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(self.radius, self.radius)].CGPath;
-        CGContextAddPath(context, pathBorder);
-        CGContextDrawPath(context, kCGPathStroke);
-        
-        self.layer.cornerRadius = self.radius;
-        self.layer.masksToBounds = YES;
+    if (self.isShowBorder) {
+        if (self.imageBorder) {
+            self.imageBorder = [self.imageBorder resizableImageWithCapInsets:UIEdgeInsetsMake(self.imageBorder.size.height/2 - 1, self.imageBorder.size.width/2 - 1, self.imageBorder.size.height/2 - 1, self.imageBorder.size.width/2 - 1)];
+            [self.imageBorder drawInRect:rect];
+        } else if (self.color) {
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            CGContextSetLineWidth(context, 1.0);
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGPathRef pathBorder = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(self.radius, self.radius)].CGPath;
+            CGContextAddPath(context, pathBorder);
+            CGContextDrawPath(context, kCGPathStroke);
+            
+            self.layer.cornerRadius = self.radius;
+            self.layer.masksToBounds = YES;
+        }
     }
     
     if (self.title && self.color) {
@@ -107,6 +109,7 @@
     self.radius = 4;
     self.space = 2;
     self.iconYInset = 0;
+    self.isShowBorder = YES;
 }
 
 //改变地区名

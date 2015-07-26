@@ -24,6 +24,7 @@ IB_DESIGNABLE
 @property (nonatomic, strong) IBInspectable NSString *title;    /**< 标题 */
 @property (nonatomic, assign) IBInspectable CGFloat fontSize;   /**< 字体大小 */
 @property (nonatomic, strong) IBInspectable UIColor *color; /**< 字体和边框颜色（iamge为空时对边框有效） */
+@property (nonatomic, assign) IBInspectable BOOL isShowBorder; /**< 是否显示边框，默认显示 */
 @property (nonatomic, strong) IBInspectable UIImage *imageBorder; /**< image边框（优先使用image做边框） */
 @property (nonatomic, assign) IBInspectable CGFloat radius; /**< 圆角大小（在image为空时有效） */
 
