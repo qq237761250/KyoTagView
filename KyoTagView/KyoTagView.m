@@ -8,12 +8,6 @@
 
 #import "KyoTagView.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-#define KyoTagViewSizeWithFont(text, font) [text length] > 0 ? [text sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero
-#else
-#define KyoTagViewSizeWithFont(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero
-#endif
-
 @interface KyoTagView()
 
 - (void)setupDefault;
