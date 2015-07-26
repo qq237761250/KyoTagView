@@ -30,10 +30,15 @@
 }
 
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon {
+    return [self initWithTitle:title withPoint:point withMargin:marginSize withIcon:imageIcon withFontSize:9];
+}
+
+- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize {
     self = [super init];
     if (self) {
         self.title = title;
         self.imageIcon = imageIcon;
+        self.fontSize = fontSize;
         [self setupDefault];
         
         //计算size
@@ -58,6 +63,7 @@
     if (self) {
         self.title = title;
         self.imageIcon = imageIcon;
+        self.fontSize = 9;
         [self setupDefault];
     }
     
@@ -103,7 +109,6 @@
 #pragma mark - Methods
 
 - (void)setupDefault {
-    self.fontSize = 9;
     self.color = [UIColor colorWithRed:155/255.0 green:155/255.0 blue:155/255.0 alpha:1.0];
     self.backgroundColor = [UIColor clearColor];
     self.radius = 4;

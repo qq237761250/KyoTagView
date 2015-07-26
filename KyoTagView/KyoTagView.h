@@ -28,6 +28,7 @@ IB_DESIGNABLE
 @property (nonatomic, strong) IBInspectable UIImage *imageBorder; /**< image边框（优先使用image做边框） */
 @property (nonatomic, assign) IBInspectable CGFloat radius; /**< 圆角大小（在image为空时有效） */
 
+- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize;
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon;
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize;
 - (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon;

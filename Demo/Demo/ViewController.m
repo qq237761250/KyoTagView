@@ -47,5 +47,11 @@
     tagView5.space = 0;
     tagView5.direction = KyoTagViewIconDirectionRight;
     [self.view addSubview:tagView5];
+    
+    KyoTagView *tagView6 = [[KyoTagView alloc] initWithTitle:@"代码创建4" withPoint:CGPointMake(200, 450) withMargin:CGSizeMake(16, 30) withIcon:[UIImage imageNamed:@"com_icon_location"] withFontSize:13];
+    tagView6.iconYInset = -6;
+    tagView6.space = 0;
+    tagView6.direction = KyoTagViewIconDirectionRight;
+    [self.view addSubview:tagView6];
 }
 @end
