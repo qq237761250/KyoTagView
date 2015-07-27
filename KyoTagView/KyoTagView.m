@@ -69,6 +69,15 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setupDefault];
+    }
+    
+    return self;
+}
+
 - (void)dealloc {
     [self removeObserveAllProperty];    //移除监听所有属性变化
 }
