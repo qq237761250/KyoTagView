@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -25,9 +26,13 @@
                                     <action selector="btnTouchIn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YfN-S3-dMa"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvj-tN-2dt" customClass="KyoTagView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvj-tN-2dt" customClass="KyoTagView">
                                 <rect key="frame" x="265" y="14" width="144" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="eFd-je-GdY"/>
+                                    <constraint firstAttribute="width" constant="144" id="t5e-2B-n2B"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="1" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,10 +46,17 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="kyoTagViewDelegate" destination="vXZ-lx-hvc" id="ou7-AQ-FDb"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8G6-Gj-Pyt" customClass="KyoTagView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8G6-Gj-Pyt" customClass="KyoTagView">
                                 <rect key="frame" x="105" y="14" width="144" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="I4o-Uh-RZf"/>
+                                    <constraint firstAttribute="width" constant="144" id="oOF-Ee-JR9"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="1" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,11 +76,21 @@
                                         <real key="value" value="-4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="touchColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="kyoTagViewDelegate" destination="vXZ-lx-hvc" id="0El-kD-xJA"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-Ne-4gH" customClass="KyoTagView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fjs-Ne-4gH" customClass="KyoTagView">
                                 <rect key="frame" x="105" y="51" width="144" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="9Ya-a7-FOQ"/>
+                                    <constraint firstAttribute="width" constant="144" id="F0E-Pz-GgF"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="1" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,10 +113,17 @@
                                         <real key="value" value="-4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="kyoTagViewDelegate" destination="vXZ-lx-hvc" id="30M-DM-skw"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPO-jO-rCR" customClass="KyoTagView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPO-jO-rCR" customClass="KyoTagView">
                                 <rect key="frame" x="265" y="51" width="144" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="bXL-ix-UL9"/>
+                                    <constraint firstAttribute="height" constant="25" id="yaO-Sc-s9W"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                         <color key="value" red="1" green="0.58823529409999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,9 +147,22 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowBorder" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="kyoTagViewDelegate" destination="vXZ-lx-hvc" id="nXk-cZ-77a"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fjs-Ne-4gH" firstAttribute="top" secondItem="8G6-Gj-Pyt" secondAttribute="bottom" constant="12" id="BQM-Q9-cA7"/>
+                            <constraint firstItem="rvj-tN-2dt" firstAttribute="leading" secondItem="8G6-Gj-Pyt" secondAttribute="trailing" constant="16" id="MLZ-5V-ey5"/>
+                            <constraint firstItem="8G6-Gj-Pyt" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="89" id="Xih-DF-jAB"/>
+                            <constraint firstItem="XPO-jO-rCR" firstAttribute="leading" secondItem="fjs-Ne-4gH" secondAttribute="trailing" constant="16" id="cF6-7V-4Tu"/>
+                            <constraint firstItem="rvj-tN-2dt" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="14" id="fuh-hB-fsD"/>
+                            <constraint firstItem="fjs-Ne-4gH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="105" id="qjI-r5-nZ5"/>
+                            <constraint firstItem="8G6-Gj-Pyt" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="14" id="qwi-OJ-TSx"/>
+                            <constraint firstItem="XPO-jO-rCR" firstAttribute="top" secondItem="rvj-tN-2dt" secondAttribute="bottom" constant="12" id="wsj-XI-jIE"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="kyoTagView" destination="8G6-Gj-Pyt" id="zZg-d1-ric"/>

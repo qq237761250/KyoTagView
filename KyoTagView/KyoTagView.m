@@ -11,11 +11,17 @@
 
 @interface KyoTagView()
 
+@property (strong, nonatomic) UIButton *btn;
+
+
+- (void)btnTouchIn:(UIButton *)btn;
+
 - (void)setupDefault;   //设置默认属性值
 - (NSMutableAttributedString *)getAttributedStringTitle:(NSString *)title;  //根据文字获得attributedstring
 - (NSDictionary *)getPropertyNameList;  //获取所有属性
 - (void)observeAllProperty; //监听所有属性变化
 - (void)removeObserveAllProperty;   //移除监听所有属性变化
+- (UIImage *)createImageWithColor:(UIColor *)color; //将UIColor变换为UIImage
 
 @end
 
@@ -114,7 +120,33 @@
         }
         [attributedStringTitle drawAtPoint:CGPointMake(titleLeft, titleTop)];
     }
+    
+    if (!_btn) {
+        _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btn.translatesAutoresizingMaskIntoConstraints = NO;
+        [_btn addTarget:self action:@selector(btnTouchIn:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_btn];
+        NSDictionary *dictViews = @{@"subView" : _btn};
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(==0)-[subView]-(==0)-|" options:0 metrics:nil views:dictViews]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(==0)-[subView]-(==0)-|" options:0 metrics:nil views:dictViews]];
+    }
+    
+    if (_touchColor) {
+        [_btn setBackgroundImage:[self createImageWithColor:_touchColor] forState:UIControlStateHighlighted];
+    } else {
+        [_btn setBackgroundImage:nil forState:UIControlStateHighlighted];
+    }
 }
+
+#pragma mark --------------------
+#pragma mark - Events
+
+- (void)btnTouchIn:(UIButton *)btn {
+    if (_kyoTagViewDelegate && [_kyoTagViewDelegate respondsToSelector:@selector(kyoTagViewTouchIn:)]) {
+        [_kyoTagViewDelegate kyoTagViewTouchIn:self];
+    }
+}
+
 
 #pragma mark --------------------
 #pragma mark - Methods
@@ -180,6 +212,19 @@
         [self removeObserver:self forKeyPath:dictProperty.allKeys[i]];
     }
     
+}
+
+//将UIColor变换为UIImage
+- (UIImage *)createImageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1, 1);
+    UIGraphicsBeginImageContextWithOptions(rect.size,NO,[UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return theImage;
 }
 
 #pragma mark ----------------

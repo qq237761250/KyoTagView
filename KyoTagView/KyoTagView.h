@@ -13,9 +13,13 @@ typedef enum {
     KyoTagViewIconDirectionRight = 1    //在右边
 } KyoTagViewIconDirection;
 
+@protocol KyoTagViewDelegate;
+
 IB_DESIGNABLE
 
 @interface KyoTagView : UIView
+
+@property (weak, nonatomic) IBOutlet id<KyoTagViewDelegate> kyoTagViewDelegate;
 
 @property (strong, nonatomic) IBInspectable UIImage *imageIcon; /**< 图标 */
 @property (assign, nonatomic) IBInspectable NSInteger direction;    /**< 图标方向， 设置图标时有用 */
@@ -27,11 +31,19 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable BOOL isShowBorder; /**< 是否显示边框，默认显示 */
 @property (nonatomic, strong) IBInspectable UIImage *imageBorder; /**< image边框（优先使用image做边框） */
 @property (nonatomic, assign) IBInspectable CGFloat radius; /**< 圆角大小（在image为空时有效） */
+@property (strong, nonatomic) IBInspectable UIColor *touchColor;    /**< 点击后的颜色,默认没有颜色 */
 
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize;
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon;
 - (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize;
 - (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon;
 - (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame;
+
+@end
+
+@protocol KyoTagViewDelegate <NSObject>
+
+@optional
+- (void)kyoTagViewTouchIn:(KyoTagView *)kyoTagView;
 
 @end

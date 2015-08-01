@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "KyoTagView.h"
 
-@interface ViewController ()
+@interface ViewController ()<KyoTagViewDelegate>
 
 @property (weak, nonatomic) IBOutlet KyoTagView *kyoTagView;
 
@@ -60,4 +60,13 @@
     tagView6.direction = KyoTagViewIconDirectionRight;
     [self.view addSubview:tagView6];
 }
+
+#pragma mark --------------------
+#pragma mark - KyoTagViewDelegate
+
+- (void)kyoTagViewTouchIn:(KyoTagView *)kyoTagView {
+    NSLog(@"%@",kyoTagView.title);
+}
+
+
 @end
