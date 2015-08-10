@@ -26,6 +26,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable CGFloat iconYInset;    /**< 图标与标题之间的 y轴inset，默认为0 */
 @property (nonatomic, assign) IBInspectable CGFloat space;    /**< 图标与标题的间距，默认为2 */
 @property (nonatomic, strong) IBInspectable NSString *title;    /**< 标题 */
+@property (nonatomic, strong) IBInspectable NSMutableAttributedString *attributedTitle;    /**< 富文本标题 */
 @property (nonatomic, assign) IBInspectable CGFloat fontSize;   /**< 字体大小 */
 @property (nonatomic, strong) IBInspectable UIColor *color; /**< 字体和边框颜色（iamge为空时对边框有效） */
 @property (nonatomic, assign) IBInspectable BOOL isShowBorder; /**< 是否显示边框，默认显示 */
@@ -33,11 +34,11 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable CGFloat radius; /**< 圆角大小（在image为空时有效） */
 @property (strong, nonatomic) IBInspectable UIColor *touchColor;    /**< 点击后的颜色,默认没有颜色 */
 
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize;
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon;
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize;
-- (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon;
-- (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame;
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize;
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon;
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize;
+- (id)initWithTitle:(id)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon;
+- (id)initWithTitle:(id)title withFrame:(CGRect)frame;
 
 @end
 

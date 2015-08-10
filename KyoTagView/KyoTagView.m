@@ -18,6 +18,7 @@
 
 - (void)setupDefault;   //设置默认属性值
 - (NSMutableAttributedString *)getAttributedStringTitle:(NSString *)title;  //根据文字获得attributedstring
+- (NSMutableAttributedString *)getAttributedStringAttributedTitle:(NSMutableAttributedString *)attributedTitle;  //根据文字获得attributedstring
 - (NSDictionary *)getPropertyNameList;  //获取所有属性
 - (void)observeAllProperty; //监听所有属性变化
 - (void)removeObserveAllProperty;   //移除监听所有属性变化
@@ -30,24 +31,25 @@
 #pragma mark --------------------
 #pragma mark - CycLife
 
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize {
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize {
     return [self initWithTitle:title withPoint:point withMargin:marginSize withIcon:nil];
 }
 
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon {
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon {
     return [self initWithTitle:title withPoint:point withMargin:marginSize withIcon:imageIcon withFontSize:9];
 }
 
-- (id)initWithTitle:(NSString *)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize {
+- (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize {
     self = [super init];
     if (self) {
-        _title = title;
+        _title = [title isKindOfClass:[NSString class]] ? title : nil;
+        _attributedTitle = [title isKindOfClass:[NSAttributedString class]] ? title : nil;
         _imageIcon = imageIcon;
         _fontSize = fontSize;
         [self setupDefault];
         
         //计算size
-        NSMutableAttributedString *attributedStringTitle = [self getAttributedStringTitle:_title];
+        NSMutableAttributedString *attributedStringTitle = _title ? [self getAttributedStringTitle:_title] : [self getAttributedStringAttributedTitle:_attributedTitle];
         CGSize titleSize = [attributedStringTitle boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:NULL].size;
         CGSize iconSize = _imageIcon ? _imageIcon.size : CGSizeZero;  //icon的size
         CGSize maxSize = CGSizeMake(fmax(titleSize.width, iconSize.width), fmax(titleSize.height, iconSize.height));  //标题size和图标size的最大size
@@ -59,14 +61,15 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame {
+- (id)initWithTitle:(id)title withFrame:(CGRect)frame {
     return [self initWithTitle:title withFrame:frame withIcon:nil];
 }
 
-- (id)initWithTitle:(NSString *)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon {
+- (id)initWithTitle:(id)title withFrame:(CGRect)frame withIcon:(UIImage *)imageIcon {
     self = [super initWithFrame:frame];
     if (self) {
-        _title = title;
+        _title = [title isKindOfClass:[NSString class]] ? title : nil;
+        _attributedTitle = [title isKindOfClass:[NSAttributedString class]] ? title : nil;
         _imageIcon = imageIcon;
         _fontSize = 9;
         [self setupDefault];
@@ -106,8 +109,9 @@
         }
     }
     
-    if (_title && _color) {
-        NSMutableAttributedString *attributedStringTitle = [self getAttributedStringTitle:_title];
+    if ((_title && _color) ||
+        (_attributedTitle && _color)) {
+        NSMutableAttributedString *attributedStringTitle = _title ? [self getAttributedStringTitle:_title] : [self getAttributedStringAttributedTitle:_attributedTitle];
         CGSize titleSize = [attributedStringTitle boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:NULL].size;
         CGFloat titleTop = (rect.size.height - titleSize.height) / 2.0;
         CGFloat titleLeft = (rect.size.width - titleSize.width) / 2.0;
@@ -135,6 +139,25 @@
         [_btn setBackgroundImage:[self createImageWithColor:_touchColor] forState:UIControlStateHighlighted];
     } else {
         [_btn setBackgroundImage:nil forState:UIControlStateHighlighted];
+    }
+}
+
+#pragma mark --------------------
+#pragma mark - Settings
+
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    
+    if (title) {
+        _attributedTitle = nil;
+    }
+}
+
+- (void)setAttributedTitle:(NSMutableAttributedString *)attributedTitle {
+    _attributedTitle = attributedTitle;
+    
+    if (attributedTitle) {
+        _title = nil;
     }
 }
 
@@ -181,6 +204,25 @@
     }
     
     return attributedStringTitle;
+}
+
+//根据文字获得attributedstring
+- (NSMutableAttributedString *)getAttributedStringAttributedTitle:(NSMutableAttributedString *)attributedTitle {
+    if (_imageIcon) {
+        NSTextAttachment *textAttachmentIcon = [[NSTextAttachment alloc] init];
+        textAttachmentIcon.image = _imageIcon;
+        if (_direction == KyoTagViewIconDirectionLeft) {
+            textAttachmentIcon.bounds = CGRectMake(-_space, _iconYInset, textAttachmentIcon.image.size.width, textAttachmentIcon.image.size.height);
+            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachmentIcon];
+            [attributedTitle insertAttributedString:attributedString atIndex:0];
+        } else {
+            textAttachmentIcon.bounds = CGRectMake(_space, _iconYInset, textAttachmentIcon.image.size.width, textAttachmentIcon.image.size.height);
+            NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachmentIcon];
+            [attributedTitle insertAttributedString:attributedString atIndex:attributedTitle.length];
+        }
+    }
+    
+    return attributedTitle;
 }
 
 //获取所有属性
