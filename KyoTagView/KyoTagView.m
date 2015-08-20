@@ -111,7 +111,7 @@
     
     if ((_title && _color) ||
         (_attributedTitle && _color)) {
-        NSMutableAttributedString *attributedStringTitle = _title ? [self getAttributedStringTitle:_title] : [self getAttributedStringAttributedTitle:_attributedTitle];
+        NSMutableAttributedString *attributedStringTitle = _title ? [self getAttributedStringTitle:_title] : _attributedTitle;
         CGSize titleSize = [attributedStringTitle boundingRectWithSize:CGSizeMake(1000, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:NULL].size;
         CGFloat titleTop = (rect.size.height - titleSize.height) / 2.0;
         CGFloat titleLeft = (rect.size.width - titleSize.width) / 2.0;
@@ -154,10 +154,11 @@
 }
 
 - (void)setAttributedTitle:(NSMutableAttributedString *)attributedTitle {
-    _attributedTitle = attributedTitle;
+    _attributedTitle = nil;
     
     if (attributedTitle) {
         _title = nil;
+        _attributedTitle = [self getAttributedStringAttributedTitle:attributedTitle];
     }
 }
 
@@ -208,6 +209,20 @@
 
 //根据文字获得attributedstring
 - (NSMutableAttributedString *)getAttributedStringAttributedTitle:(NSMutableAttributedString *)attributedTitle {
+    //    //递归看看是否富文本中有iamgeicon，如果有，删除掉
+    //    [attributedTitle enumerateAttributesInRange:NSMakeRange(0, attributedTitle.length) options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+    //        NSLog(@"%@",attrs);
+    //        for (NSString *key in attrs.allKeys) {
+    //            if ([key isEqualToString:@"NSAttachment"]) {
+    //                NSTextAttachment *attachment = attrs[key];
+    //                if ([attachment.image isEqual:_imageIcon]) {
+    //                    [attributedTitle removeAttribute:@"NSAttachment" range:range];
+    //                    *stop = YES;
+    //                }
+    //            }
+    //        }
+    //    }];
+    
     if (_imageIcon) {
         NSTextAttachment *textAttachmentIcon = [[NSTextAttachment alloc] init];
         textAttachmentIcon.image = _imageIcon;
