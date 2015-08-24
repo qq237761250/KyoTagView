@@ -33,6 +33,8 @@ IB_DESIGNABLE
 @property (nonatomic, strong) IBInspectable UIImage *imageBorder; /**< image边框（优先使用image做边框） */
 @property (nonatomic, assign) IBInspectable CGFloat radius; /**< 圆角大小（在image为空时有效） */
 @property (strong, nonatomic) IBInspectable UIColor *touchColor;    /**< 点击后的颜色,默认没有颜色 */
+@property (strong, nonatomic) IBInspectable UIColor *disableColor;    /**< 不能点击时的颜色,默认没有颜色 */
+@property (assign, nonatomic) BOOL enable; /**< 是否开启，默认开启 */
 
 - (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon withFontSize:(CGFloat)fontSize;
 - (id)initWithTitle:(id)title withPoint:(CGPoint)point withMargin:(CGSize)marginSize withIcon:(UIImage *)imageIcon;
