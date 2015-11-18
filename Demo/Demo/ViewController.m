@@ -32,7 +32,7 @@
 - (IBAction)btnTouchIn:(id)sender {
     
     self.kyoTagView.title = @"改变文本";
-    [self.kyoTagView setNeedsDisplay];
+    self.kyoTagView.isShowBorder = NO;
     
     KyoTagView *tagView1 = [[KyoTagView alloc] initWithTitle:@"代码创建" withFrame:CGRectMake(200, 200, 56, 28)];
     [self.view addSubview:tagView1];
