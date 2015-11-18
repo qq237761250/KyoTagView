@@ -88,7 +88,9 @@
 }
 
 - (void)dealloc {
-    [self removeObserveAllProperty];    //移除监听所有属性变化
+    if ([UIApplication sharedApplication].delegate) {
+        [self removeObserveAllProperty];    //移除监听所有属性变化
+    }
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -197,7 +199,9 @@
     _isShowBorder = YES;
     _enable = YES;
     
-    [self observeAllProperty];  //监听所有属性变化
+    if ([UIApplication sharedApplication].delegate) {
+        [self observeAllProperty];  //监听所有属性变化
+    }
 }
 
 //根据文字获得attributedstring
